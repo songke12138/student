@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.student.dao.StuInfoMapper">
+	<resultMap id="BaseResultMap" type="com.example.student.pojo.StuInfo" >
+
+
+			<result column="NAME" property="name" jdbcType="VARCHAR" />
+			<result column="SNO" property="sno"  jdbcType="INTEGER"  />
+			<result column="SEX" property="sex" jdbcType="VARCHAR"  />
+			<result column="TEL" property="tel" jdbcType="VARCHAR" />
+
+	</resultMap>
+  <insert id="add"  parameterType="com.example.student.pojo.StuInfo">
+	   INSERT INTO stu_info (NAME,SNO,SEX,TEL) values (#{name},#{sno},#{sex},#{tel})
+
+	</insert>
+
+	<select id="findBySno" resultMap="BaseResultMap" >
+
+		select * from stu_info where SNO=#{sno}
+
+	</select>
+
+	<delete id="deleteBySno" parameterType="Integer">
+
+		delete  from stu_info where SNO=#{sno}
+
+	</delete>
+
+	<update id="update" parameterType="com.example.student.pojo.StuInfo">
+
+ 	update stu_info
+    	set NAME = #{name},
+     	 SEX = #{sex},
+      	 TEL = #{tel}
+   	 where SNO = #{sno}
+	</update>
+
+</mapper>
